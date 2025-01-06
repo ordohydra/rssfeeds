@@ -4,7 +4,7 @@ import 'dart:io';
 import 'network_service_api.dart';
 import 'package:xml/xml.dart';
 
-class NetworkServiceImpl extends NetworkServiceAPI {
+final class NetworkServiceImpl implements NetworkServiceAPI {
   final HttpClient _client;
   NetworkServiceImpl() : _client = HttpClient();
 

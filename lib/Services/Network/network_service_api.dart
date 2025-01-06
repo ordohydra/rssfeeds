@@ -1,5 +1,5 @@
 import 'package:xml/xml.dart';
 
-abstract class NetworkServiceAPI {
+abstract interface class NetworkServiceAPI {
   Future<XmlDocument> fetchFeed(Uri url);
 }
