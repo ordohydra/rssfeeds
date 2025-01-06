@@ -38,6 +38,7 @@ dependencies:
   yx_scope: ^1.0.0
   xml: ^6.5.0
   bloc: ^8.1.4
+  bloc_concurrency: ^0.2.5
 
 dev_dependencies:
   flutter_test:
