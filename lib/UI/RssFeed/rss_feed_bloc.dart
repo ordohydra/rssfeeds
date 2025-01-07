@@ -11,8 +11,12 @@ final class RssFeedBloc extends Bloc<RssFeedEvent, RssFeedState> {
     _feedService = scopeContainer.feedServiceDep.get;
 
     on<RssFeedFetchEvent>((event, emit) async {
-      final items = await _feedService.fetch();
-      emit(RssFeedState(items: items));
+      try {
+        final items = await _feedService.fetch();
+        emit(RssFeedState(items: items));
+      } catch (error) {
+        print(error);
+      }
     });
   }
 }

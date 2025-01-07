@@ -24,15 +24,25 @@ final class FeedServiceImpl implements FeedServiceApi {
       throw ErrorDescription('Parsing error – no rss node');
     }
 
-    final xmlItems = rssNode.findElements("item");
+    final xmlItems = rssNode.findAllElements("item");
     final items = xmlItems.nonNulls.map((xmlItem) => _parseElement(xmlItem));
 
     return items.nonNulls.toList();
   }
 
   FeedItem? _parseElement(XmlElement element) {
-    final title = element.findAllElements('title').firstOrNull?.value;
-    final text = element.findAllElements('description').firstOrNull?.value;
+    final title = element
+        .findAllElements('title')
+        .firstOrNull
+        ?.children
+        .firstOrNull
+        ?.value;
+    final text = element
+        .findAllElements('description')
+        .firstOrNull
+        ?.children
+        .firstOrNull
+        ?.value;
     if (title == null || text == null) {
       return null;
     }
