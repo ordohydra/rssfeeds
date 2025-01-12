@@ -25,10 +25,14 @@ class RssFeedWidget extends StatelessWidget {
                 },
                 itemCount: state.items.length,
               ),
-              Align(
-                child: FloatingActionButton(
-                  child: Text("Refresh"),
-                  onPressed: () => bloc.add(RssFeedFetchEvent()),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0.0, 0.0, 16.0, 64.0),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    child: Text("Refresh"),
+                    onPressed: () => bloc.add(RssFeedFetchEvent()),
+                  ),
                 ),
               )
             ],
