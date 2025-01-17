@@ -2,13 +2,16 @@ import 'package:rssfeeds/Services/Feed/feed_service_api.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_event.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_state.dart';
 import 'package:bloc/bloc.dart';
-import 'package:rssfeeds/app_scope_container.dart';
+
+abstract interface class RssFeedBlocDepsProvider {
+  FeedServiceApi getFeedService();
+}
 
 final class RssFeedBloc extends Bloc<RssFeedEvent, RssFeedState> {
   late final FeedServiceApi _feedService;
-  RssFeedBloc(AppScopeContainer scopeContainer)
+  RssFeedBloc(RssFeedBlocDepsProvider depsProvider)
       : super(RssFeedState(items: [])) {
-    _feedService = scopeContainer.feedServiceDep.get;
+    _feedService = depsProvider.getFeedService();
 
     on<RssFeedFetchEvent>((event, emit) async {
       try {

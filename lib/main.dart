@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_widget.dart';
-import 'package:rssfeeds/app_scope_container.dart';
-import 'package:rssfeeds/app_scope_holder.dart';
+import 'package:rssfeeds/app_scope_lifecycle.dart';
 
 void main() {
-  final appScopeHolder = AppScopeHolder();
-  appScopeHolder.create();
-
-  if (appScopeHolder.scope == null) {
-    throw UnimplementedError();
-  }
+  final appScopeLifecycle = AppScopeLifecycle.init();
 
   runApp(RssFeedAppWidget(
-    appScopeContainer: appScopeHolder.scope!,
+    depsProvider: appScopeLifecycle,
   ));
-
-  appScopeHolder.drop();
 }
 
 class RssFeedAppWidget extends StatelessWidget {
-  final AppScopeContainer appScopeContainer;
-  const RssFeedAppWidget({super.key, required this.appScopeContainer});
+  final RssFeedAppWidgetDepsProvider depsProvider;
+  const RssFeedAppWidget({super.key, required this.depsProvider});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +22,9 @@ class RssFeedAppWidget extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Scaffold(body: RssFeedWidget(scopeContainer: appScopeContainer)));
+        home: Scaffold(body: RssFeedWidget(depsProvider: depsProvider)));
   }
 }
+
+abstract class RssFeedAppWidgetDepsProvider
+    implements RssFeedWidgetDepsProvider {}

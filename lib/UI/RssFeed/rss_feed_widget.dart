@@ -3,16 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_bloc.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_event.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_state.dart';
-import 'package:rssfeeds/app_scope_container.dart';
+import 'package:rssfeeds/app_scope_lifecycle.dart';
 
 class RssFeedWidget extends StatelessWidget {
-  final AppScopeContainer scopeContainer;
-  const RssFeedWidget({Key? key, required this.scopeContainer})
-      : super(key: key);
+  final RssFeedWidgetDepsProvider depsProvider;
+  const RssFeedWidget({Key? key, required this.depsProvider}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = RssFeedBloc(scopeContainer);
+    final bloc = RssFeedBloc(depsProvider);
     return BlocBuilder<RssFeedBloc, RssFeedState>(
         bloc: bloc,
         builder: (builderContext, state) {
@@ -40,3 +39,5 @@ class RssFeedWidget extends StatelessWidget {
         });
   }
 }
+
+abstract class RssFeedWidgetDepsProvider implements RssFeedBlocDepsProvider {}
