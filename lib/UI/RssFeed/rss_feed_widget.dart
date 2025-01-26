@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rssfeeds/UI/RssFeed/FeedItemDetails/rss_feed_item_details_widget.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_bloc.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_event.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_state.dart';
-import 'package:rssfeeds/app_scope_lifecycle.dart';
 
 class RssFeedWidget extends StatelessWidget {
   final RssFeedWidgetDepsProvider depsProvider;
@@ -17,12 +17,19 @@ class RssFeedWidget extends StatelessWidget {
         builder: (builderContext, state) {
           return Stack(
             children: [
-              ListView.builder(
-                itemBuilder: (context, index) {
-                  final item = state.items[index];
-                  return Text(item.title);
-                },
-                itemCount: state.items.length,
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    final item = state.items[index];
+                    return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 4),
+                        child: RssFeedItemDetailsWidget(
+                          feedItem: item,
+                        ));
+                  },
+                  itemCount: state.items.length,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0.0, 0.0, 16.0, 64.0),
