@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:rssfeeds/Model/feed_item.dart';
 
 final class RssFeedItemDetailsWidget extends StatelessWidget {
@@ -14,7 +15,7 @@ final class RssFeedItemDetailsWidget extends StatelessWidget {
           feedItem.title,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(feedItem.textContent)
+        Html(data: feedItem.textContent),
       ],
     );
   }

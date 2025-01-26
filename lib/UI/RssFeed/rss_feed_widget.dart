@@ -19,11 +19,13 @@ class RssFeedWidget extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(12.0),
-                child: ListView.builder(
+                child: ListView.separated(
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Divider(height: 1),
                   itemBuilder: (context, index) {
                     final item = state.items[index];
                     return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4),
+                        padding: EdgeInsets.symmetric(vertical: 8),
                         child: RssFeedItemDetailsWidget(
                           feedItem: item,
                         ));
