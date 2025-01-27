@@ -23,10 +23,12 @@ final class NetworkServiceStub implements NetworkServiceAPI {
 <item>
   <title>Test title 1</title>
   <description>Test text</description>
+  <link>https://google.com</link>
 </item>
 <item>
   <title>Test title 2</title>
   <description>Test text</description>
+  <link>https://google.com</link>
 </item>
 </rss>
 """);

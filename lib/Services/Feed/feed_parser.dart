@@ -23,9 +23,17 @@ FeedItem? parseElement(XmlElement element) {
       ?.children
       .firstOrNull
       ?.value;
+
+  final urlStr =
+      element.findAllElements('link').firstOrNull?.children.firstOrNull?.value;
+  if (urlStr == null) {
+    return null;
+  }
+
+  final url = Uri.parse(urlStr);
   if (title == null || text == null) {
     return null;
   }
 
-  return FeedItem(title: title, textContent: text);
+  return FeedItem(title: title, textContent: text, url: url);
 }

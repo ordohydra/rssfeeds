@@ -11,6 +11,7 @@ void main() {
 <test>
   <title>Test title</title>
   <description>Test text</description>
+  <link>https://google.com</link>
 </test>""");
       final item = parseElement(document.rootElement);
       if (item == null) {
@@ -18,6 +19,7 @@ void main() {
       }
       expect(item.title, 'Test title');
       expect(item.textContent, 'Test text');
+      expect(item.url, Uri.parse('https://google.com'));
     });
 
     test('RSS document should be parsed correcly', () {
@@ -26,10 +28,12 @@ void main() {
 <item>
   <title>Test title 1</title>
   <description>Test text</description>
+  <link>https://google.com</link>
 </item>
 <item>
   <title>Test title 2</title>
   <description>Test text</description>
+  <link>https://google.com</link>
 </item>
 </rss>
 """);

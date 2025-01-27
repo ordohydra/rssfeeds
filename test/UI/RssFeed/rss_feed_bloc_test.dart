@@ -20,7 +20,10 @@ final class FeedServiceStub implements FeedServiceApi {
   @override
   Future<List<FeedItem>> fetch() {
     final itemsList = [
-      FeedItem(title: "Test title", textContent: "Test content"),
+      FeedItem(
+          title: "Test title",
+          textContent: "Test content",
+          url: Uri.parse("https://google.com")),
     ];
     return Future.value(itemsList);
   }
