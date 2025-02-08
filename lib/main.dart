@@ -22,7 +22,11 @@ class RssFeedAppWidget extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Scaffold(body: RssFeedWidget(depsProvider: depsProvider)));
+        home: Scaffold(
+            appBar: AppBar(
+              title: const Text('Feed'),
+            ),
+            body: RssFeedWidget(depsProvider: depsProvider)));
   }
 }
 

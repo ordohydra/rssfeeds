@@ -12,6 +12,10 @@ final class RssFeedItemReaderWidget extends StatelessWidget {
     final controller = WebViewController();
     controller.loadRequest(feedItem.url);
 
-    return WebViewWidget(controller: controller);
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(feedItem.title),
+        ),
+        body: WebViewWidget(controller: controller));
   }
 }
