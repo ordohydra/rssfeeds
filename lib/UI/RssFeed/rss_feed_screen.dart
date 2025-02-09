@@ -5,9 +5,9 @@ import 'package:rssfeeds/UI/RssFeed/rss_feed_bloc.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_event.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_state.dart';
 
-class RssFeedWidget extends StatelessWidget {
+class RssFeedScreen extends StatelessWidget {
   final RssFeedWidgetDepsProvider depsProvider;
-  const RssFeedWidget({Key? key, required this.depsProvider}) : super(key: key);
+  const RssFeedScreen({Key? key, required this.depsProvider}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rssfeeds/UI/RssFeed/rss_feed_widget.dart';
+import 'package:rssfeeds/UI/RssFeed/rss_feed_screen.dart';
 import 'package:rssfeeds/app_scope_lifecycle.dart';
 
 void main() {
@@ -26,7 +26,7 @@ class RssFeedAppWidget extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Feed'),
             ),
-            body: RssFeedWidget(depsProvider: depsProvider)));
+            body: RssFeedScreen(depsProvider: depsProvider)));
   }
 }
 
