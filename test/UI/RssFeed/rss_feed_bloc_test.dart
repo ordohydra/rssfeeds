@@ -1,7 +1,8 @@
 import 'package:rssfeeds/Model/feed_item.dart';
 import 'package:rssfeeds/Services/Feed/feed_service_api.dart';
-import 'package:rssfeeds/UI/RssFeed/rss_feed_bloc.dart';
-import 'package:rssfeeds/UI/RssFeed/rss_feed_event.dart';
+import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_bloc.dart';
+import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_bloc_deps_provider.dart';
+import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_event.dart';
 import 'package:test/test.dart';
 
 void main() {

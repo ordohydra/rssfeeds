@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rssfeeds/UI/RssFeed/FeedItemDetails/rss_feed_item_details_widget.dart';
-import 'package:rssfeeds/UI/RssFeed/rss_feed_bloc.dart';
-import 'package:rssfeeds/UI/RssFeed/rss_feed_event.dart';
-import 'package:rssfeeds/UI/RssFeed/rss_feed_state.dart';
+import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_bloc.dart';
+import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_event.dart';
+import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_state.dart';
+import 'package:rssfeeds/UI/RssFeed/rss_feed_screen_deps_provider.dart';
 
 class RssFeedScreen extends StatelessWidget {
-  final RssFeedWidgetDepsProvider depsProvider;
+  final RssFeedScreenDepsProvider depsProvider;
   const RssFeedScreen({Key? key, required this.depsProvider}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Feed'),
+      ),
+      body: _feedItemsBlocBuilder(),
+    );
+  }
+
+  Widget _feedItemsBlocBuilder() {
     final bloc = RssFeedBloc(depsProvider);
     return BlocBuilder<RssFeedBloc, RssFeedState>(
         bloc: bloc,
@@ -48,5 +58,3 @@ class RssFeedScreen extends StatelessWidget {
         });
   }
 }
-
-abstract class RssFeedWidgetDepsProvider implements RssFeedBlocDepsProvider {}
