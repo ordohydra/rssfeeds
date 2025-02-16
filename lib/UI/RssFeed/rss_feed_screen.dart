@@ -8,7 +8,7 @@ import 'package:rssfeeds/UI/RssFeed/rss_feed_screen_deps_provider.dart';
 
 class RssFeedScreen extends StatelessWidget {
   final RssFeedScreenDepsProvider depsProvider;
-  const RssFeedScreen({Key? key, required this.depsProvider}) : super(key: key);
+  const RssFeedScreen({super.key, required this.depsProvider});
 
   @override
   Widget build(BuildContext context) {
