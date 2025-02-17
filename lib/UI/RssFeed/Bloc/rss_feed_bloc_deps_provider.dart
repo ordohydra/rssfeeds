@@ -1,5 +1,5 @@
-import 'package:rssfeeds/Services/Feed/feed_service_api.dart';
+import 'package:rssfeeds/Managers/Feed/feed_manager_api.dart';
 
 abstract interface class RssFeedBlocDepsProvider {
-  FeedServiceApi getFeedService();
+  FeedManagerApi getFeedManager();
 }

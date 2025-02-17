@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:rssfeeds/Managers/Feed/feed_manager_api.dart';
 import 'package:rssfeeds/Model/feed_item.dart';
 import 'package:rssfeeds/Services/Feed/feed_service_api.dart';
 import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_bloc.dart';
@@ -17,20 +20,27 @@ void main() {
   });
 }
 
-final class FeedServiceStub implements FeedServiceApi {
+final class FeedManagerStub implements FeedManagerApi {
+  final _itemStreamController = StreamController<List<FeedItem>>();
+
   @override
-  Future<List<FeedItem>> fetch() {
+  void fetch() {
     final itemsList = [
       FeedItem(
           title: "Test title",
           textContent: "Test content",
           url: Uri.parse("https://google.com")),
     ];
-    return Future.value(itemsList);
+    _itemStreamController.add(itemsList);
+  }
+
+  @override
+  Stream<List<FeedItem>> items() {
+    return _itemStreamController.stream;
   }
 }
 
 final class RssFeedBlocDepsProviderStub implements RssFeedBlocDepsProvider {
   @override
-  FeedServiceApi getFeedService() => FeedServiceStub();
+  FeedManagerApi getFeedManager() => FeedManagerStub();
 }
