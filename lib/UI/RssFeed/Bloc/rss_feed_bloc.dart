@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:rssfeeds/Managers/Feed/feed_manager_api.dart';
+import 'package:rssfeeds/Model/feed_item.dart';
 import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_bloc_deps_provider.dart';
 import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_event.dart';
 import 'package:rssfeeds/UI/RssFeed/Bloc/rss_feed_state.dart';
@@ -6,6 +9,7 @@ import 'package:bloc/bloc.dart';
 
 final class RssFeedBloc extends Bloc<RssFeedEvent, RssFeedState> {
   late final FeedManagerApi _feedManager;
+  late final StreamSubscription _streamSubscription;
   RssFeedBloc(RssFeedBlocDepsProvider depsProvider)
       : super(RssFeedState(items: [])) {
     _feedManager = depsProvider.getFeedManager();
@@ -26,7 +30,7 @@ final class RssFeedBloc extends Bloc<RssFeedEvent, RssFeedState> {
       }
     });
 
-    _feedManager.items().listen((items) {
+    _streamSubscription = _feedManager.items().listen((items) {
       add(RssUpdateFetchEvent(items: items));
     });
   }

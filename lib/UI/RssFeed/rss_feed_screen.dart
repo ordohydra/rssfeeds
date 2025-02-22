@@ -8,22 +8,15 @@ import 'package:rssfeeds/UI/RssFeed/rss_feed_screen_deps_provider.dart';
 
 class RssFeedScreen extends StatelessWidget {
   final RssFeedScreenDepsProvider depsProvider;
-  const RssFeedScreen({super.key, required this.depsProvider});
+  late final RssFeedBloc _bloc;
+  RssFeedScreen({super.key, required this.depsProvider}) {
+    _bloc = RssFeedBloc(depsProvider);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Feed'),
-      ),
-      body: _feedItemsBlocBuilder(),
-    );
-  }
-
-  Widget _feedItemsBlocBuilder() {
-    final bloc = RssFeedBloc(depsProvider);
     return BlocBuilder<RssFeedBloc, RssFeedState>(
-        bloc: bloc,
+        bloc: _bloc,
         builder: (builderContext, state) {
           return Stack(
             children: [
@@ -49,7 +42,7 @@ class RssFeedScreen extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   child: FloatingActionButton(
                     child: Text("Refresh"),
-                    onPressed: () => bloc.add(RssFeedFetchEvent()),
+                    onPressed: () => _bloc.add(RssFeedFetchEvent()),
                   ),
                 ),
               )

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rssfeeds/UI/Main/main_screen.dart';
+import 'package:rssfeeds/UI/Main/main_screen_deps_provider.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_screen.dart';
 import 'package:rssfeeds/UI/RssFeed/rss_feed_screen_deps_provider.dart';
 import 'package:rssfeeds/app_scope_lifecycle.dart';
@@ -6,26 +8,25 @@ import 'package:rssfeeds/app_scope_lifecycle.dart';
 void main() {
   final appScopeLifecycle = AppScopeLifecycle.init();
 
-  runApp(RssFeedAppWidget(
+  runApp(AppWidget(
     depsProvider: appScopeLifecycle,
   ));
 }
 
-class RssFeedAppWidget extends StatelessWidget {
-  final RssFeedAppWidgetDepsProvider depsProvider;
-  const RssFeedAppWidget({super.key, required this.depsProvider});
+class AppWidget extends StatelessWidget {
+  final AppWidgetDepsProvider depsProvider;
+  const AppWidget({super.key, required this.depsProvider});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'RSS Feed',
+        title: 'News Feed',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Scaffold(body: RssFeedScreen(depsProvider: depsProvider)));
+        home: MainScreen(depsProvider: depsProvider));
   }
 }
 
-abstract class RssFeedAppWidgetDepsProvider
-    implements RssFeedScreenDepsProvider {}
+abstract class AppWidgetDepsProvider implements MainScreenDepsProvider {}

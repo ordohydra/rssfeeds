@@ -7,7 +7,7 @@ import 'package:rssfeeds/Services/Feed/feed_service_impl.dart';
 import 'package:rssfeeds/Services/Network/network_service_impl.dart';
 import 'package:rssfeeds/main.dart';
 
-final class AppScopeLifecycle implements RssFeedAppWidgetDepsProvider {
+final class AppScopeLifecycle implements AppWidgetDepsProvider {
   final FeedManagerApi feedManager;
   final NetworkServiceAPI networkService;
   AppScopeLifecycle({required this.feedManager, required this.networkService});
